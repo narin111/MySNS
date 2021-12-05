@@ -155,8 +155,6 @@ def get_posts():
             posts = list(db.posts.find({}).sort("date", -1).limit(20))
         else:
             posts = list(db.posts.find({"username": username_receive}).sort("date", -1).limit(20))
-        # 포스팅 목록 받아오기
-        posts = list(db.posts.find({}).sort("date", -1).limit(20))
         for post in posts:
             post["_id"] = str(post["_id"])
             post["count_heart"] = db.likes.count_documents({"post_id": post["_id"], "type": "heart"})
